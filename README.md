@@ -7,7 +7,9 @@
 
 
 **socket**: Biblioteca padrão de Python para criar e gerenciar sockets de rede.
+
 **threading**: Biblioteca padrão de Python para criar e gerenciar threads. Threads são usadas para permitir que o servidor atenda múltiplos clientes simultaneamente.
+
 **clients**: Lista global que armazena todos os sockets dos clientes conectados. Isso é usado para retransmitir mensagens para todos os clientes.
 
 
