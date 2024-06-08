@@ -28,12 +28,15 @@
 **Parâmetros**:
 
 message: A mensagem a ser enviada.
+
 client_socket: O socket do cliente que enviou a mensagem.
 
 **Lógica**:
 
 Itera sobre todos os clientes na lista clients.
+
 Se o cliente não é o remetente original, tenta enviar a mensagem.
+
 Se a tentativa falhar (exceção), fecha a conexão com o cliente e o remove da lista.
 
 
@@ -63,9 +66,13 @@ client_socket: O socket do cliente a ser gerenciado.
 **Lógica**:
 
 Entra em um loop infinito para receber mensagens do cliente.
+
 Usa recv para ler mensagens do socket. O tamanho máximo da mensagem é 1024 bytes.
+
 Se uma mensagem é recebida, imprime a mensagem decodificada e chama a função broadcast para retransmiti-la a outros clientes.
+
 Se nenhuma mensagem é recebida, fecha a conexão e remove o cliente da lista clients.
+
 Se ocorre uma exceção, fecha a conexão e remove o cliente da lista clients.
 
 
@@ -89,17 +96,27 @@ Se ocorre uma exceção, fecha a conexão e remove o cliente da lista clients.
 **Parâmetros**:
 
 host: O endereço no qual o servidor escutará (padrão: 'localhost').
+
 port: A porta na qual o servidor escutará (padrão: 8082).
 
 **Lógica**:
 
 Cria um socket do servidor usando socket.AF_INET (IPv4) e socket.SOCK_STREAM (TCP).
+
 Define opções de socket para reutilização do endereço (SO_REUSEADDR).
+
 Associa o socket a um endereço e porta específicos (bind).
+
 Coloca o socket em modo de escuta, permitindo até 5 conexões pendentes (listen).
+
 Entra em um loop infinito para aceitar novas conexões de clientes.
+
 Para cada nova conexão:
-    Aceita a conexão e obtém um novo socket para comunicação com o cliente (accept).
-    Adiciona o socket do cliente à lista clients.
-    Cria uma nova thread para gerenciar a comunicação com o cliente usando a função handle_client.
-    Inicia a thread para que a comunicação com o cliente seja tratada de forma independente.
+
+Aceita a conexão e obtém um novo socket para comunicação com o cliente (accept).
+    
+Adiciona o socket do cliente à lista clients.
+    
+Cria uma nova thread para gerenciar a comunicação com o cliente usando a função handle_client.
+    
+Inicia a thread para que a comunicação com o cliente seja tratada de forma independente.
